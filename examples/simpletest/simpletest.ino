@@ -20,13 +20,36 @@ void setup() {
 
   // Hardware SPI (specify CS, use any available digital)
   // Can use defaults if available, ex: UNO (SS=10) or Huzzah (SS=15)
-  adc.begin();
+  //adc.begin();
   // Feather 32u4 (SS=17) or M0 (SS=16), defaults SS not broken out, must specify
   //adc.begin(10);  
 
   // Software SPI (specify all, use any available digital)
   // (sck, mosi, miso, cs);
   //adc.begin(13, 11, 12, 10);
+  /* Interfacing with NodeMCU
+  _______________________
+  Node MCU  |  MCP 3008
+  _______________________
+  3.3 v     |   VDD
+  _______________________
+  3.3 v     |   Vref
+  _______________________
+  GND       |   AGND
+  _______________________
+  D5        |    clk
+  _______________________
+  D6        |    Dout
+  _______________________
+  D7        |     Din
+  _______________________
+  D8        |     CS
+  _______________________
+  GND       |     GND
+  _______________________
+  */
+  adc.begin(D5,D7,D6,D8);
+  
 }
 
 void loop() {
